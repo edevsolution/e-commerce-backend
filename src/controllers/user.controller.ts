@@ -32,10 +32,22 @@ const createUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const loginUser = catchAsync(async (req: Request, res: Response) => {
+  const result = await userService.loginUser(req.body);
+
+  res.cookie("accessToken", result.accessToken);
+
+  return res.status(200).json({
+    success: true,
+    message: "Login successful",
+    data: result.user,
+  });
+});
+
 const getUser = catchAsync(async (req: Request, res: Response) => {
   return res.json({
     message: "Sheikh",
   });
 });
 
-export const userController = { createUser, getUser };
+export const userController = { createUser, getUser, loginUser };
