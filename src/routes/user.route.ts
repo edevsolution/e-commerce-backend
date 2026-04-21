@@ -1,16 +1,9 @@
 import { Router } from "express";
-import userModel from "../models/user.model";
+import { userController } from "../controllers/user.controller";
 
 const router = Router();
 
-router.post("/", async (req, res) => {
-  const response = await userModel.create({
-    name: "Sheikh Lukman.",
-  });
-  return res.status(201).json({
-    message: "User created successfully.",
-    data: response,
-  });
-});
+router.post("/", userController.createUser)
+router.get("/", userController.getUser)
 
 export const userRouter: Router = router;

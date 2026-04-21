@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 export enum userRoles {
-  CUSTOMER,
-  ADMIN,
+  CUSTOMER = "CUSTOMER",
+  ADMIN = "ADMIN",
 }
 
 const userSchema = new mongoose.Schema({
@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
   email: {
     type: String,
     required: [true, "Provide the email!"],
+    unique: true
   },
   password: {
     type: String,
